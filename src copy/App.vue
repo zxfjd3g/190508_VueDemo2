@@ -13,22 +13,6 @@
   import List from './components/List.vue'
   import Footer from './components/Footer.vue'
 
-  /* 
-  function Fn(params) {
-    
-  }
-
-  this.prototype = {}
-  this.prototype.constructor = Fn
-
-  const fn = new Fn()
-  this.__proto__ = Fn.prototype
-  
-   // new Person() // this.__proto__ = Person.prototype
-  */
-
- 
-
   export default {
     data () {
       return {
@@ -37,11 +21,6 @@
     },
 
     mounted() {
-      console.log('App', this)
-
-      // this.__proto__.__proto__就是Vue原型对象
-      // this.__proto__就是Vue的实例对象vm
-
       // 模拟异步读取todos数据
       setTimeout(() => {
         const todos = JSON.parse(localStorage.getItem('todos_key') || '[]')
