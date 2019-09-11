@@ -10,8 +10,8 @@ import HelloWorld from './components/HelloWorld'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: { // 注册组件
+    HelloWorld: HelloWorld
   }
 }
 </script>

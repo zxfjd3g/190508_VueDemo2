@@ -1,5 +1,4 @@
 ## 1. vue脚手架
-
 	用来创建vue项目的工具包
 	创建基于脚手架3的项目:
 	    npm install -g @vue/cli
