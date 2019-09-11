@@ -1,16 +1,48 @@
 <template>
-  <li>
+  <li :style="{background: bgColor}" @mouseenter="handleEnter(true)" @mouseleave="handleEnter(false)" >
     <label>
-      <input type="checkbox"/>
-      <span>xxxxx</span>
+      <input type="checkbox" v-model="todo.complete"/>
+      <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" style="display:none">删除</button>
+    <button class="btn btn-danger" v-show="isShow" @click="removeItem">删除</button>
   </li>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
-    name: 'Item'
+    name: 'Item',
+
+    // 声明接收属性: 属性名/属性值的类型
+    props: {
+      todo: Object,
+      removeTodo: Function,
+      index: Number
+    },
+
+    data () {
+      return {
+        bgColor: 'white',
+        isShow: false
+      }
+    },
+
+    methods: {
+      handleEnter (isEnter) {
+        if (isEnter) {
+          this.bgColor = '#aaaaaa'
+          this.isShow = true
+        } else {
+          this.bgColor = 'white'
+          this.isShow = false
+        }
+      },
+
+      removeItem () {
+        if (confirm('确定删除吗?')) {
+          this.removeTodo(this.index)
+        }
+      }
+    }
   }
 </script>
 
@@ -37,7 +69,6 @@
 
   li button {
     float: right;
-    display: none;
     margin-top: 3px;
   }
 

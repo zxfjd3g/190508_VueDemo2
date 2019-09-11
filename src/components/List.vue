@@ -1,14 +1,22 @@
 <template>
   <ul class="todo-main">
-    <Item />
-    <Item />
-    <Item />
+    <Item 
+      v-for="(todo, index) in todos" 
+      :key="todo.id" 
+      :todo="todo" 
+      :removeTodo="removeTodo" 
+      :index="index"
+                  />
   </ul>
 </template>
 
 <script type="text/ecmascript-6">
-  import Item from './Item'
+  import Item from './Item.vue'
   export default {
+    // 声明接收属性: 属性名
+    // 所有接收的标签属性都会成为组件对象的属性
+    props: ['todos', 'removeTodo'],
+
     components: {
       Item
     }
