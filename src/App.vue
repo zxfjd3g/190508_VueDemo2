@@ -1,9 +1,18 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <Header :addTodo="addTodo"/>
-      <List :todos="todos" :removeTodo="removeTodo" :completeTodo="completeTodo"/>
-      <Footer :todos="todos" :selectAll="selectAll" :clearAllComplete="clearAllComplete"/>
+      <!-- <Header @addTodo="addTodo"/> -->
+      <Header ref="header"/>
+      <List :todos="todos" :completeTodo="completeTodo"/>
+      <Footer>
+        <input type="checkbox" v-model="checkAll" slot="left"/>
+
+        <button class="btn btn-danger" v-show="completeSize>0" @click="clearAllComplete" slot="right">清除已完成任务</button>
+
+        <span slot="middle">
+          <span>已完成{{completeSize}}</span> / 全部{{todos.length}}
+        </span>
+      </Footer>
     </div>
   </div>
 </template>
@@ -36,6 +45,21 @@
       }
     },
 
+    computed: {
+      completeSize () {
+        return this.todos.reduce((pre, todo) => pre + (todo.complete ? 1 : 0), 0)
+      },
+
+      checkAll: {
+        get () {
+          return this.todos.length===this.completeSize
+        },
+        set (value) {// value就checkAll最新的值true/false
+          this.selectAll(value)
+        }
+      }
+    },
+
     mounted() {
       console.log('App', this)
 
@@ -47,6 +71,17 @@
         const todos = JSON.parse(localStorage.getItem('todos_key') || '[]')
         this.todos = todos
       }, 1000);
+
+      // 绑定自定义事件监听
+      this.$refs.header.$on('addTodo', this.addTodo)
+      // 绑定自定义事件监听(removeTodo)
+      this.$bus.$on('removeTodo', this.removeTodo)
+    },
+
+    beforeDestroy() {
+      // 移除事件监听
+      this.$bus.$off('removeTodo')
+      this.$refs.header.$off('addTodo')
     },
 
     watch: {

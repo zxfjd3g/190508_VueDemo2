@@ -15,7 +15,6 @@
     // 声明接收属性: 属性名/属性值的类型
     props: {
       todo: Object,
-      removeTodo: Function,
       index: Number,
       completeTodo: Function
     },
@@ -51,7 +50,9 @@
 
       removeItem () {
         if (confirm('确定删除吗?')) {
-          this.removeTodo(this.index)
+          // this.removeTodo(this.index)
+          // 分发事件: removeTodo
+          this.$bus.$emit('removeTodo', this.index)
         }
       }
     }

@@ -6,12 +6,6 @@
 
 <script type="text/ecmascript-6">
   export default {
-    props: { // 指定了标签属性: 属性名/属性值类型/属性的必要性
-      addTodo: {
-        type: Function,
-        required: true,
-      }
-    },
 
     data () {
       return {
@@ -34,7 +28,8 @@
         }
 
         // 调用addTodo来添加todo
-        this.addTodo(todo)
+        // 分发事件: addTodo
+        this.$emit('addTodo', todo)
 
         // 清除输入
         this.title = ''

@@ -4,7 +4,6 @@
       v-for="(todo, index) in todos" 
       :key="todo.id" 
       :todo="todo" 
-      :removeTodo="removeTodo" 
       :index="index"
       :completeTodo="completeTodo"
     />
@@ -16,7 +15,7 @@
   export default {
     // 声明接收属性: 属性名
     // 所有接收的标签属性都会成为组件对象的属性
-    props: ['todos', 'removeTodo', 'completeTodo'],
+    props: ['todos', 'completeTodo'],
 
     components: {
       Item
