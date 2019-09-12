@@ -27,18 +27,17 @@
         </template>
         <script>
             export default {
-    		 props: []/{}
-              data(){},
-    		 computed: {}
-              methods: {},
-    
-    		  watch: {}
-    		  filters: {}
-    		  directives: {}
-    		  components: {}
+							props: []/{}
+							data(){},
+							computed: {}
+							methods: {},
+							watch: {}
+							filters: {}
+							directives: {}
+							components: {}
             }
         </script>
-        <style>
+        <style scoped>
         </style>
     组件化编码的基本流程
     	1). 拆分界面, 抽取组件

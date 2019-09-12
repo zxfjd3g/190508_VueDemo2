@@ -3,6 +3,7 @@ const axios = require('axios')
 const app = express()
 
 app.get('/search/repositories', (req, res) => {
+  console.log('------')
   const repoName = req.query.repo_name
   axios.get(`https://api.github.com/search/repositories?q=${repoName}&sort=stars`)
     .then(response => {

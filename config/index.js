@@ -10,7 +10,23 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+        target: 'http://localhost:4000',
+        changeOrigin: true, 
+        pathRewrite: {// 告诉代理服务器, 在转发请求时把path开头的/api去掉
+          '^/api' : ''
+        }
+      },
+      '/baidu': {
+        target: 'http://www.baidu.com',
+        changeOrigin: true, 
+        pathRewrite: {// 告诉代理服务器, 在转发请求时把path开头的/api去掉
+          '^/baidu' : ''
+        }
+      }
+      
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
