@@ -18,8 +18,12 @@
       <div class="col-xs-6">
         <div class="panel">
           <div class="panel-body">
-            <!-- 在此显示当前路由组件 -->
-            <router-view/>
+            <!-- 保持活着: 被切换的组件对象 -->
+            <keep-alive>
+              <!-- 在此显示当前路由组件 -->
+              <router-view/>
+            </keep-alive>
+            
           </div>
         </div>
       </div>
