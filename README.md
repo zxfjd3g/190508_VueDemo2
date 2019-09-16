@@ -141,6 +141,9 @@
           .catch(error => {
         	console.log(error.message)
           })
+      在哪发请求
+          mounted(): 初始化显示后自动发请求获取数据展示
+          事件回调函数/相关函数
 
 ## 8. vue UI组件库
     常用的UI组件库
@@ -151,7 +154,7 @@
         按需打包
 
 ## 9. vue-router
-    vue用来实现SPA的插件
+    用来实现SPA的vue插件
     使用vue-router
         1. 创建路由器: router/index.js
           new VueRouter({

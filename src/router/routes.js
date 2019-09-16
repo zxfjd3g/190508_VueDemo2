@@ -30,6 +30,7 @@ export default [
           {
             name: 'detail',
             path: '/home/message/detail/:id',
+            props: route => ({id: route.params.id}),  // 将路由参数映射成路由组件的标签属性
             component: MessageDetail
           }
         ]

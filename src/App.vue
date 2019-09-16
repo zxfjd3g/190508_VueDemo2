@@ -21,7 +21,7 @@
             <!-- 保持活着: 被切换的组件对象 -->
             <keep-alive>
               <!-- 在此显示当前路由组件 -->
-              <router-view/>
+              <router-view msg="abc"/>
             </keep-alive>
             
           </div>

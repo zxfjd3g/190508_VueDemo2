@@ -14,10 +14,6 @@
   ]
   export default {
 
-    props: { // 声明接收属性: id
-      id: String
-    },
-
     data () {
       return {
         detail: {}
@@ -25,12 +21,12 @@
     },
 
     mounted () {
-      this.showDetail(this.id * 1)
+      this.showDetail(this.$route.params.id*1)
     },
 
     watch: {
-      id (value) {// 重新发请求
-        this.showDetail(value * 1)
+      $route (value) {// 重新发请求
+        this.showDetail(value.params.id * 1)
       }
     },
 

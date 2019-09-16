@@ -16,3 +16,8 @@ new Vue({
   template: '<App/>',
   router, // 配置路由器
 })
+
+new Vue({
+  render: h => h(App) // 返回<App/>, 将其渲染到el上
+  // render: createElement => createElement(App)
+}).$mount('#app')
