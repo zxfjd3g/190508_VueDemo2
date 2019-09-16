@@ -14,6 +14,30 @@
   2). 所有添加的属性都包含get/set方法
   3). 在get/set方法中去操作data中对应的属性
 -->
+  <div id="test"></div>
+  <script src="./js/mvvm/compile.js"></script>
+  <script src="./js/mvvm/mvvm.js"></script>
+  <script src="./js/mvvm/observer.js"></script>
+  <script src="./js/mvvm/watcher.js"></script>
+  <script>
+    const vm = new MVVM({
+      el: '#test',
+      data: {
+        name: 'atguigu2'
+      }
+    })
+    console.log(vm.name, vm._data.name) // atguigu    代理读   getter
 
+    vm.name = 'feifei2' // 代理写   setter
+    console.log(vm._data.name)
+    console.log(vm)
+
+    /* 
+    代理对象: vm
+    被代理对象: data
+    通过代理对象来操作被代理对象中的所有属性数据
+    */
+
+  </script>
 </body>
 </html>

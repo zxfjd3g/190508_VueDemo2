@@ -86,6 +86,32 @@
   // 5. obj.hasOwnProperty(prop): 判断prop是否是obj自身的属性
   console.log(p.hasOwnProperty('fullName'), p.hasOwnProperty('toString'))
   // 6. DocumentFragment: 文档碎片(高效批量更新多个节点)
+  // DocumentFragment: 是只存在于内存中的节点容器
+  /* 
+  <div id="demo">
+    <ul>
+      <li>test1</li>
+      <li>test2</li>
+      <li>test3</li>
+    </ul>
+  </div>
+  */
+  const div = document.getElementById('demo')
+  const fragment = document.createDocumentFragment() // 创建一个空容器
+  let child
+  // 将div的所有子node转移到fragment中
+  while (child=div.firstChild) { // 一个节点只能有父节点
+    fragment.appendChild(child) // 剪切
+  }
+
+  // 处理fragment中所有li
+  Array.from(fragment.children[0].children).forEach(li => {
+    li.innerHTML = 'atguigu' // 不更新界面
+  })
+
+  // 将处理好的fragment添加到div
+  div.appendChild(fragment) // 批量更新
+
 </script>
 </body>
 </html>
