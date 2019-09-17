@@ -1,38 +1,62 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-xs-offset-2 col-xs-8">
-        <div class="page-header">
-          <h2>Router Basic - 01</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2 col-xs-offset-2">
-        <div class="list-group">
-          <!-- 路由链接 -->
-          <router-link class="list-group-item" to="/about">About</router-link>
-          <router-link class="list-group-item"  to="/home">Home</router-link>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="panel">
-          <div class="panel-body">
-            <!-- 保持活着: 被切换的组件对象 -->
-            <keep-alive>
-              <!-- 在此显示当前路由组件 -->
-              <router-view msg="abc"/>
-            </keep-alive>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+    <p>click {{count}}, count is {{evenOrOdd}}</p>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+    <button @click="incrementIfOdd">increment if odd</button>
+    <button @click="incrementAsync">increment async</button>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-export default {};
+/* 
+mapState(): 将state数据映射成组件的计算属性
+mapGetters(): 将getters数据映射成组件的计算属性
+mapMutations(): 将包含commit()的函数映射成组件的方法
+mapActions(): 将包含dispatch()的函数映射成组件的方法
+*/
+  import { mapState, mapGetters, mapMutations, mapActions } from "vuex"
+  export default {
+
+    /* computed: {
+      count () {
+        return this.$store.state.count
+      },
+
+      evenOrOdd () {
+        return this.$store.getters.evenOrOdd
+      }
+    }, */
+    computed: {
+      ...mapState(['count']),  // {count() {return this.$store.state.count}}
+      ...mapGetters(['evenOrOdd']), // {['evenOrOdd'] () {return this.$store.getters['evenOrOdd']}}
+    },
+
+
+    /* methods: {
+      increment () {
+        this.$store.commit('INCREMENT')
+      },
+      decrement () {
+        this.$store.commit('DECREMENT')
+      },
+      incrementIfOdd () {
+        this.$store.dispatch('incrementIfOdd')
+      },
+      incrementAsync () {
+        console.log('----')
+        this.$store.dispatch('incrementAsync')
+      },
+    } */
+
+    methods: {
+      ...mapActions(['incrementIfOdd', 'incrementAsync']),
+      ...mapMutations({
+        increment: 'INCREMENT',
+        decrement: 'DECREMENT',
+      })
+    }
+  };
 </script>
 
 <style>
