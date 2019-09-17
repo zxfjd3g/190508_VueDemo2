@@ -10,6 +10,36 @@
   -->
 </head>
 <body>
+
+  <div id="test">
+    <div>{{name}}</div>
+    <div v-text="name"></div>
+    <div>{{husband.name}}</div>
+    <div>{{husband.age}}</div>
+    <button v-on:click="update">更新</button>
+  </div>
+  <script src="./js/mvvm/compile.js"></script>
+  <script src="./js/mvvm/mvvm.js"></script>
+  <script src="./js/mvvm/observer.js"></script>
+  <script src="./js/mvvm/watcher.js"></script>
+  <script>
+    new MVVM({
+      el: '#test',
+      data: {
+        name: 'xixi',
+        husband: {
+          name: 'damu',
+          age: 24
+        }
+      },
+      methods: {
+        update () {
+          this.name = 'dongdong' // data中的name改变了 ==> 1. 它怎么知道?
+          this.husband.name = 'damu222' // 2. 它怎么知道更新哪些节点, 怎么更新?
+        }
+      }
+    })
+  </script>
 </body>
 
 </html>
